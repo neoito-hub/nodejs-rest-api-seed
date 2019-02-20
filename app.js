@@ -7,6 +7,8 @@ const config = require('./config')[env];
 
 const app = express();
 
+const db = require('./db')(config);
+
 // to get payload in req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -14,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('combined'));
 
 app.listen(config.port, () => {
-  const status = `[app] running | env -> ${config.configName} | port -> ${config.port}`;
+  const status = `[app status] running | env -> ${config.configName} | port -> ${config.port}`;
   console.log(status);
 });
 
