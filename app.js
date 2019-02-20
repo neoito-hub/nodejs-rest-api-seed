@@ -7,7 +7,8 @@ const config = require('./config')[env];
 
 const app = express();
 
-const db = require('./db')(config);
+// connecting to mongodb
+require('./db')(config);
 
 // to get payload in req.body
 app.use(bodyParser.json());
