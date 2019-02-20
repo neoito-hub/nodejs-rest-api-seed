@@ -13,9 +13,9 @@ const getQuotes = async (req, res, next) => {
 const addQuote = async (req, res, next) => {
   try {
     const newQuote = new Quote(req.xop);
-    const { err, quote } = await newQuote.save();
-    if (err) {
-      next(err);
+    const quote = await newQuote.save();
+    if (!quote) {
+      next();
     }
     res.status(201).json(utils.buildResponse(false, '', quote));
   } catch (e) {
