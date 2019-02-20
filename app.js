@@ -29,8 +29,8 @@ app.listen(config.port, () => {
 
 // for 400 range errors
 const clientErrorHandler = (err, req, res, next) => {
-  if (req.xhr) {
-    res.status(400).json(utils.buildResponse(true, req.xhr.msg, {}));
+  if (req.error) {
+    res.status(400).json(utils.buildResponse(true, req.error.msg, {}));
   } else {
     next(err);
   }

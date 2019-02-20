@@ -9,19 +9,20 @@ const addQuote = (req, res, next) => {
   const { error, value } = joi.validate(req.body, schema);
 
   if (error) {
-    req.xhrValidate = {
+    req.error = {
       msg: ''
     };
     switch (error.details[0].context.key) {
       case 'quote':
-        req.xhrValidate.msg = 'Quote should be a string :P';
+        req.error.msg = 'Quote should be a string :P';
         break;
       case 'by':
-        req.xhrValidate.msg = 'By should be a string :P';
+        req.error.msg = 'By should be a string :P';
         break;
       default:
-        req.xhrValidate.msg = 'Unknown client error';
+        req.error.msg = 'Unknown client error';
     }
+    next({});
   } else {
     req.xop = {
       quote: value.quote,
