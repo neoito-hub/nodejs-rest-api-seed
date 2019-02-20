@@ -4,6 +4,7 @@ const morgan = require('morgan');
 
 const env = process.env.NODE_ENV || 'dev';
 const config = require('./config')[env];
+const utils = require('./utils');
 
 const app = express();
 
@@ -14,7 +15,12 @@ require('./db')(config);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // for logging
-app.use(morgan('combined'));
+// https://github.com/expressjs/morgan
+app.use(morgan(env === 'dev' ? 'dev' : 'common'));
+
+const routes = require('./server/routes/index.routes');
+
+app.use('/', routes);
 
 app.listen(config.port, () => {
   const status = `[app status] running | env -> ${config.configName} | port -> ${config.port}`;
@@ -24,9 +30,9 @@ app.listen(config.port, () => {
 // for 500 range errors
 const serverErrorHandler = (err, req, res, next) => {
   if (env === 'dev') {
-    res.status(500).send({ error: true, msg: 'Server crashed', data: err });
+    res.status(500).send(utils.buildResponse(true, 'Server crashed', err));
   } else {
-    res.status(500).send({ error: true, msg: 'Unexpected error happened', data: {} });
+    res.status(500).send(utils.buildResponse(true, 'Unexpected error happened', {}));
   }
 };
 app.use(serverErrorHandler);
