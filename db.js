@@ -30,16 +30,16 @@ module.exports = config => {
     reconnectInterval: 5000
   });
   mongoose.connection.on('connected', () => {
-    console.log(`[app status] connected to ${config.db}`);
+    console.log(`[db status] connected to ${config.db}`);
   });
 
   mongoose.connection.on('reconnected', () => {
-    console.log(`[app status] reconnected to ${config.db}`);
+    console.log(`[db status] reconnected to ${config.db}`);
   });
   mongoose.connection.on('disconnected', () => {
-    console.log(`[app error] disconnected from ${config.db}`);
+    console.log(`[db error] disconnected from ${config.db}`);
   });
   mongoose.connection.on('error', () => {
-    throw new Error(`[app error] unable to connect to database: ${config.db}`);
+    throw new Error(`[db error] unable to connect to database: ${config.db}`);
   });
 };
