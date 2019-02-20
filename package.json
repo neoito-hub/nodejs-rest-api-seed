@@ -5,11 +5,13 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app"
+    "start": "NODE_ENV='test' node app",
+    "prod": "NODE_ENV='prod' node app",
+    "dev": "nodemon app"
   },
   "keywords": [],
   "author": "akts <akts@disroot.org>",
-  "license": "ISC",
+  "license": "WTFPL",
   "devDependencies": {
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -18,6 +20,12 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
+    "nodemon": "^1.18.10",
     "prettier": "^1.16.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1"
   }
 }
