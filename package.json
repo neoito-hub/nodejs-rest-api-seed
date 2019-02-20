@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-rest-api-seed",
+  "version": "0.0.1",
+  "description": "A rest api boiler-plate with express.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "keywords": [],
+  "author": "akts <akts@disroot.org>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "prettier": "^1.16.4"
+  }
+}
