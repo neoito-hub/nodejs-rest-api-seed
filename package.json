@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV='test' node app",
-    "prod": "NODE_ENV='prod' node app",
+    "start": "NODE_ENV=test node app",
+    "prod": "NODE_ENV=prod node app",
     "dev": "nodemon app"
   },
   "keywords": [],

@@ -17,3 +17,15 @@ app.listen(config.port, () => {
   const status = `[app] running | env -> ${config.configName} | port -> ${config.port}`;
   console.log(status);
 });
+
+// for 500 range errors
+const serverErrorHandler = (err, req, res, next) => {
+  if (env === 'dev') {
+    res.status(500).send({ error: true, msg: 'Server crashed', data: err });
+  } else {
+    res.status(500).send({ error: true, msg: 'Unexpected error happened', data: {} });
+  }
+};
+app.use(serverErrorHandler);
+
+module.exports = app;
