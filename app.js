@@ -30,9 +30,9 @@ app.listen(config.port, () => {
 // for 500 range errors
 const serverErrorHandler = (err, req, res, next) => {
   if (env === 'dev') {
-    res.status(500).send(utils.buildResponse(true, 'Server crashed', err));
+    res.status(500).json(utils.buildResponse(true, 'Server crashed', err));
   } else {
-    res.status(500).send(utils.buildResponse(true, 'Unexpected error happened', {}));
+    res.status(500).json(utils.buildResponse(true, 'Unexpected error happened', {}));
   }
 };
 app.use(serverErrorHandler);

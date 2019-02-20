@@ -1,11 +1,15 @@
 const express = require('express');
 
 const router = express.Router();
+const utils = require('../../utils');
 const quoteController = require('../controllers/quote.controller');
+const quoteValidate = require('../validates/quote.validate');
 
-router.route('/').post(quoteController.addQuote);
-router.route('/').put(quoteController.updateQuote);
-router.route('/').delete(quoteController.deleteQuote);
-router.route('/').get(quoteController.getQuotes);
+router
+  .route('/')
+  .post(quoteValidate.addQuote, utils.clientErrorHandler, quoteController.addQuote)
+  .put(quoteController.updateQuote)
+  .delete(quoteController.deleteQuote)
+  .get(quoteController.getQuotes);
 
 module.exports = router;

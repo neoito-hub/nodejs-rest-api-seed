@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=test node app",
     "prod": "NODE_ENV=prod node app",
-    "dev": "nodemon app"
+    "dev": "nodemon app",
+    "debug": "NODE_ENV=dev node --inspect app"
   },
   "keywords": [],
   "author": "akts <akts@disroot.org>",
@@ -26,6 +27,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "joi": "^14.3.1",
     "mongoose": "^5.4.14",
     "morgan": "^1.9.1"
   }
