@@ -1,9 +1,9 @@
 {
-    "extends": ["airbnb", "prettier"],
-    "plugins": ["prettier"],
-    "rules": {
-      "prettier/prettier": ["error"],
-      "no-console": "off",
-      "no-unused-vars": ["error", { "argsIgnorePattern": "next" }]
-    }
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "no-console": "off",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "next" }]
+  }
 }
