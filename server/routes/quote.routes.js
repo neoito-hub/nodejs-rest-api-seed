@@ -1,7 +1,6 @@
 const express = require('express');
 
 const router = express.Router();
-// const utils = require('../../utils');
 const quoteController = require('../controllers/quote.controller');
 const quoteValidate = require('../validates/quote.validate');
 
