@@ -8,20 +8,23 @@ const UserSchema = new mongoose.Schema(
     email: {
       type: String,
       lowercase: true,
-      unique: true,
-      required: [true, "can't be blank"],
-      match: [/\S+@\S+\.\S+/, 'is invalid'],
-      index: true
+      required: true
     },
     auth: {
-      hash: String,
-      salt: String
+      hash: {
+        type: String
+      },
+      salt: {
+        type: String
+      }
     }
   },
   { versionKey: false, timestamps: true }
 );
 
-UserSchema.methods.generateJWT = () => {
+// Taken shamelessly from
+// https://github.com/gothinkster/node-express-realworld-example-app
+UserSchema.methods.generateJWT = function() {
   const today = new Date();
   const exp = new Date(today);
   exp.setDate(today.getDate() + 60);
@@ -29,21 +32,34 @@ UserSchema.methods.generateJWT = () => {
   return jwt.sign(
     {
       id: this._id,
-      username: this.username,
+      email: this.email,
       exp: parseInt(exp.getTime() / 1000, 0)
     },
     secret
   );
 };
 
-UserSchema.methods.validPassword = password => {
-  const hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
-  return this.hash === hash;
+UserSchema.methods.validPassword = function(password) {
+  const hash = crypto.pbkdf2Sync(password, this.auth.salt, 10000, 512, 'sha512').toString('hex');
+  return this.auth.hash === hash;
 };
 
-UserSchema.methods.setPassword = password => {
-  this.salt = crypto.randomBytes(16).toString('hex');
-  this.hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, 'sha512').toString('hex');
+UserSchema.methods.setPassword = function(password) {
+  this.auth = {
+    hash: '',
+    salt: ''
+  };
+  this.auth.salt = crypto.randomBytes(16).toString('hex');
+  this.auth.hash = crypto
+    .pbkdf2Sync(password, this.auth.salt, 10000, 512, 'sha512')
+    .toString('hex');
+};
+
+UserSchema.methods.toAuthJSON = function() {
+  return {
+    email: this.email,
+    token: this.generateJWT()
+  };
 };
 
 module.exports = mongoose.model('user', UserSchema);
