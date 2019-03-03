@@ -8,9 +8,16 @@ const getQuotes = async (req, res, next) => {
     let skip = 0;
     const perPage = 10;
 
+    /**
+     * we need 10 results per query
+     * p=0: skip = 0
+     * p=1: skip = 0
+     * p=2: skip = 10*(2-1) => 10
+     * p=3: skip = 10*(3-1) => 20
+     */
     if (req.xop.p && req.xop.p > 1) {
       pageNo = req.xop.p;
-      skip = perPage * pageNo + 1;
+      skip = perPage * (pageNo - 1);
     }
 
     const quotes = await Quote.find()
