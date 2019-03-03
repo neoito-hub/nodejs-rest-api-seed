@@ -5,6 +5,7 @@
     "prettier/prettier": ["error"],
     "no-console": "off",
     "no-underscore-dangle": "off",
+    "consistent-return": "off",
     "func-names": 0,
     "no-unused-vars": ["error", { "argsIgnorePattern": "next" }]
   }

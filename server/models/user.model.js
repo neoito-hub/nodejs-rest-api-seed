@@ -24,6 +24,10 @@ const UserSchema = new mongoose.Schema(
 
 // Taken shamelessly from
 // https://github.com/gothinkster/node-express-realworld-example-app
+/**
+ * Use function() instead of () =>, as this will be bound to current
+ * scope in latter. Use REGULAR functions!
+ * */
 UserSchema.methods.generateJWT = function() {
   const today = new Date();
   const exp = new Date(today);
