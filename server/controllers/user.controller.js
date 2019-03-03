@@ -44,7 +44,21 @@ const login = async (req, res, next) => {
   }
 };
 
+const me = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.token.id);
+    if (!user) {
+      req.error = { msg: 'User not found' };
+      return next({});
+    }
+    res.status(200).json(utils.buildResponse(false, '', user.toAuthJSON()));
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   createUser,
-  login
+  login,
+  me
 };
