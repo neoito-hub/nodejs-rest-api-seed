@@ -10,7 +10,7 @@
     "debug": "NODE_ENV=dev node --inspect app"
   },
   "keywords": [],
-  "author": "akts <akts@disroot.org>",
+  "author": "the backend authors of neoito",
   "license": "WTFPL",
   "devDependencies": {
     "eslint": "^5.3.0",
