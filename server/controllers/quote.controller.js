@@ -3,7 +3,19 @@ const utils = require('../../utils');
 
 const getQuotes = async (req, res, next) => {
   try {
-    const quotes = await Quote.find();
+    // pagination
+    let pageNo = 1;
+    let skip = 0;
+    const perPage = 10;
+
+    if (req.xop.p && req.xop.p > 1) {
+      pageNo = req.xop.p;
+      skip = perPage * pageNo + 1;
+    }
+
+    const quotes = await Quote.find()
+      .skip(skip)
+      .limit(perPage);
     res.status(200).json(utils.buildResponse(false, '', quotes));
   } catch (e) {
     next(e);

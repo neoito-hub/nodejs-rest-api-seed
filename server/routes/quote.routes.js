@@ -9,6 +9,6 @@ router
   .post(quoteValidate.addQuote, quoteController.addQuote)
   .put(quoteController.updateQuote)
   .delete(quoteController.deleteQuote)
-  .get(quoteController.getQuotes);
+  .get(quoteValidate.getQuotes, quoteController.getQuotes);
 
 module.exports = router;
