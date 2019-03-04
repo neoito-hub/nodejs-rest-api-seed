@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user.controller');
 const userValidate = require('../validates/user.validate');
-const { verifyToken } = require('../../services');
+const { verifyToken } = require('../../../accessControl/auth');
 
 router
   .route('/')

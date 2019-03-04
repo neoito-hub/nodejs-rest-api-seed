@@ -1,5 +1,5 @@
 const User = require('../models/user.model');
-const utils = require('../../utils');
+const utils = require('../../../utils');
 
 const createUser = async (req, res, next) => {
   try {

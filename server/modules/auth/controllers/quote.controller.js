@@ -1,5 +1,5 @@
 const Quote = require('../models/quote.model');
-const utils = require('../../utils');
+const utils = require('../../../utils');
 
 const getQuotes = async (req, res, next) => {
   try {

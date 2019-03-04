@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-const { secret } = require('../../config')[process.env.NODE_ENV];
+const { secret } = require('../../../../config')[process.env.NODE_ENV];
 
 const UserSchema = new mongoose.Schema(
   {

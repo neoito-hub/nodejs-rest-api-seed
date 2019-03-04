@@ -4,7 +4,7 @@ const morgan = require('morgan');
 
 const env = process.env.NODE_ENV || 'dev';
 const config = require('./config')[env];
-const utils = require('./utils');
+const utils = require('./server/utils');
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // https://github.com/expressjs/morgan
 app.use(morgan(env === 'dev' ? 'dev' : 'common'));
 
-const routes = require('./server/routes/index.routes');
+const routes = require('./server/modules/index.routes');
 
 app.use('/', routes);
 
